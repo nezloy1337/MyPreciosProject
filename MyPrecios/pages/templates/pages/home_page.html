@@ -1,73 +1,39 @@
+{% load static %}
+<link type="text/css" href="{% static 'pages/css/home_page.css' %}" rel="stylesheet" />
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Моя красивая страница</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 1rem 0;
-            text-align: center;
-        }
-        nav {
-            display: flex;
-            justify-content: center;
-            background-color: #444;
-        }
-        nav a {
-            color: #fff;
-            padding: 1rem;
-            text-decoration: none;
-        }
-        nav a:hover {
-            background-color: #555;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 1rem;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-        }
-    </style>
+    <title>Почтовый сервис</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Добро пожаловать на мою страницу</h1>
+        <h1>Добро пожаловать в Почтовый сервис</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Вход</a></li>
+                <li><a href="#">Регистрация</a></li>
+                <li><a href="#">Контакты</a></li>
+            </ul>
+        </nav>
     </header>
-    <nav>
-        <a href="#home">Главная</a>
-        <a href="#about">О нас</a>
-        <a href="#services">Услуги</a>
-        <a href="#contact">Контакты</a>
-    </nav>
-    <div class="container">
-        <h2>О нас</h2>
-        <p>Мы предоставляем лучшие услуги в области веб-разработки. Наша команда профессионалов готова помочь вам создать сайт вашей мечты.</p>
-        <h2>Услуги</h2>
-        <p>Мы предлагаем широкий спектр услуг, включая разработку сайтов, SEO-оптимизацию и поддержку.</p>
-        <h2>Контакты</h2>
-        <p>Свяжитесь с нами по электронной почте: info@example.com</p>
-    </div>
+    <main>
+        <section>
+            <h2>Вход в систему</h2>
+            <form action="#" method="post">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="password">Пароль:</label>
+                <input type="password" id="password" name="password" required>
+                <button type="submit">Войти</button>
+            </form>
+        </section>
+    </main>
     <footer>
-        <p>&copy; 2024 Моя красивая страница. Все права защищены.</p>
+        <p>© 2024 Почтовый сервис. Все права защищены.</p>
     </footer>
 </body>
 </html>
+
