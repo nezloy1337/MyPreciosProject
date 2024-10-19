@@ -1,0 +1,40 @@
+{% load static %}
+<link type="text/css" href="{% static 'pages/css/register_page.css' %}" rel="stylesheet" />
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Регистрация в Почтовом сервисе</h1>
+        <nav>
+            <ul>
+                <li><a href="">Главная</a></li>
+                <li><a href="">Вход</a></li>
+                <li><a href="">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h2>Создать учетную запись</h2>
+            <form action="#" method="post">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="password">Пароль:</label>
+                <input type="password" id="password" name="password" required>
+                <label for="password-repeat">Повторите пароль:</label>
+                <input type="password" id="password-repeat" name="password-repeat" required>
+                <button type="submit">Регистрация</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>© 2024 Почтовый сервис. Все права защищены.</p>
+    </footer>
+</body>
+</html>
