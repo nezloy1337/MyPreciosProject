@@ -1,45 +1,15 @@
-{% load static %}
-<link type="text/css" href="{% static 'pages/css/main_page.css' %}" rel="stylesheet" />
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Главная страница</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <header>
-        <h1>Почтовый сервис</h1>
-        <nav>
-            <ul>
-                <li><a href="#">Входящие</a></li>
-                <li><a href="#">Отправленные</a></li>
-                <li><a href="#">Черновики</a></li>
-                <li><a href="#">Настройки</a></li>
-                <li><a href="#">Выход</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
+{% extends 'base.html' %}
+{% block messages %}
+<main>
         <section>
-            <h2>Добро пожаловать, [Имя пользователя]!</h2>
-            <p>У вас 5 новых сообщений.</p>
             <button>Написать письмо</button>
         </section>
         <section>
             <h3>Последние сообщения</h3>
             <ul>
                 <li><a href="#">Сообщение 1</a></li>
-                <li><a href="#">Сообщение 2</a></li>
-                <li><a href="#">Сообщение 3</a></li>
-                <li><a href="#">Сообщение 4</a></li>
-                <li><a href="#">Сообщение 5</a></li>
+
             </ul>
         </section>
     </main>
-    <footer>
-        <p>© 2024 Почтовый сервис. Все права защищены.</p>
-    </footer>
-</body>
-</html>
+{% endblock messages %}
