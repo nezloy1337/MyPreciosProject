@@ -12,11 +12,14 @@
         <h1>Почтовый сервис</h1>
         <nav>
             <ul>
+                {% if auth %}
                 <li><a href="#">Входящие</a></li>
                 <li><a href="#">Отправленные</a></li>
                 <li><a href="#">Черновики</a></li>
                 <li><a href="#">Настройки</a></li>
-                <li><a href="#">Выход</a></li>
+                <li><a href="users/logout">Выход</a></li>
+                {% endif %}
+
             </ul>
         </nav>
     </header>

@@ -10,6 +10,7 @@ from users.forms import LoginUserForm
 
 
 class LoginUser(LoginView):
+    print('auth started')
     form_class = LoginUserForm
     template_name = 'users/login.html'
     extra_context = {title:'avrtoriz'}

@@ -5,7 +5,8 @@ from django.views.generic import CreateView, UpdateView, DeleteView , TemplateVi
 class HomePageView(ListView):
     pass
 
-
+#сделать удобный выход
 @login_required
 def home_page(request):
-    return render(request, 'pages/main_page.html',context={})
+    auth = request.user.is_authenticated
+    return render(request, 'pages/main_page.html',context={"auth":auth})
