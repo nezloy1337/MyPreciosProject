@@ -4,19 +4,26 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView, TemplateView, ListView, FormView
 
+from pages.models import Mails
 from users.forms import SendMessageForm
 
 
-class HomePageView(ListView):
-    pass
-
-#сделать удобный выход
-@login_required
-def home_page(request):
-    auth = request.user.is_authenticated
-    return render(request, 'pages/main_page.html',context={"auth":auth})
 
 
+
+# @login_required
+# def home_page(request):
+#     auth = request.user.is_authenticated
+#     return render(request, 'pages/main_page.html',context={"auth":auth})
+
+
+class MainPage(LoginRequiredMixin, ListView):
+    model = Mails
+    template_name = 'pages/main_page.html'
+    context_object_name = 'mails'
+
+    def get_queryset(self):
+        return Mails.objects.filter(to_user=self.request.user.username)
 
 
 class SendMessage(LoginRequiredMixin,FormView):

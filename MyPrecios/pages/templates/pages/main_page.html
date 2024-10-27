@@ -9,8 +9,13 @@
         <section>
             <h3>Последние сообщения</h3>
             <ul>
+                {% for mail in mails %}
+                    <li>
+                        <strong>From:</strong> {{ mail.from_user }}<br>
+                        <strong>Message:</strong> {{ mail.message }}
+                    </li>
+                {% endfor %}
 
-                <li><a href="#">Сообщение 1</a></li>
 
             </ul>
         </section>
