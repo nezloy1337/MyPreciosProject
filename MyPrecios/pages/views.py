@@ -23,6 +23,8 @@ class SendMessage(LoginRequiredMixin,FormView):
     success_url = reverse_lazy("home")
 
     def form_valid(self, form):
+        form.instance.from_user = self.request.user.username
         form.save()
+
         return super().form_valid(form)
 
