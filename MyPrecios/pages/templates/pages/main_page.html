@@ -2,7 +2,9 @@
 {% block messages %}
 <main>
         <section>
-            <button>Написать письмо</button>
+            <form action="{% url 'send' %}" method="GET">
+    <button type="submit">Написать письмо</button>
+</form>
         </section>
         <section>
             <h3>Последние сообщения</h3>

@@ -5,12 +5,12 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.template.defaultfilters import title
 from django.urls import reverse_lazy, reverse
+from django.views.generic import CreateView
 
-from users.forms import LoginUserForm
+from users.forms import LoginUserForm, SendMessageForm
 
 
 class LoginUser(LoginView):
-    print('auth started')
     form_class = LoginUserForm
     template_name = 'users/login.html'
     extra_context = {title:'avrtoriz'}
@@ -23,3 +23,5 @@ class LoginUser(LoginView):
 def logout_user(request):
     logout(request)
     return HttpResponseRedirect(reverse('users:login'))
+
+
