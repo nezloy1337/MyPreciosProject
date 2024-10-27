@@ -12,7 +12,7 @@
         <h1>Почтовый сервис</h1>
         <nav>
             <ul>
-                {% if auth %}
+                {% if request.user.is_authenticated %}
                 <li><a href="#">Входящие</a></li>
                 <li><a href="#">Отправленные</a></li>
                 <li><a href="#">Черновики</a></li>

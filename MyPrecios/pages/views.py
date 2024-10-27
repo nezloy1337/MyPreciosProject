@@ -17,6 +17,8 @@ def home_page(request):
     return render(request, 'pages/main_page.html',context={"auth":auth})
 
 
+
+
 class SendMessage(LoginRequiredMixin,FormView):
     form_class = SendMessageForm
     template_name = 'pages/sendform.html'
