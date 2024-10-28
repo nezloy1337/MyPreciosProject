@@ -1,6 +1,6 @@
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm
-
+from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from pages.models import Mails
 
 
@@ -10,7 +10,20 @@ class LoginUserForm(AuthenticationForm):
     password = forms.CharField(label="Пароль",
                     widget=forms.PasswordInput(attrs={'class': 'form-input'}))
 
+    class Meta:
+        model = get_user_model()
+        fields = ('username', 'password')
+
+class CreateUserForm(UserCreationForm):
+    username = forms.CharField()
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-input'}))
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-input'}))
+    class Meta:
+        nodel = get_user_model()
+        fields = ('username', 'password1', 'password2')
+
 class SendMessageForm(forms.ModelForm):
+
     class Meta:
         model = Mails
         fields = [ 'to_user', 'message']
@@ -18,3 +31,4 @@ class SendMessageForm(forms.ModelForm):
             'to_user': forms.TextInput(attrs={'class': 'form-input'}),
             'content': forms.Textarea(attrs={'cols': 50, 'rows': 5}),
         }
+

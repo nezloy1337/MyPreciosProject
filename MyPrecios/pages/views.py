@@ -9,14 +9,6 @@ from users.forms import SendMessageForm
 
 
 
-
-
-# @login_required
-# def home_page(request):
-#     auth = request.user.is_authenticated
-#     return render(request, 'pages/main_page.html',context={"auth":auth})
-
-
 class MainPage(LoginRequiredMixin, ListView):
     model = Mails
     template_name = 'pages/main_page.html'
@@ -24,6 +16,11 @@ class MainPage(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return Mails.objects.filter(to_user=self.request.user.username)
+
+class OutcomeMessages(MainPage):
+    def get_queryset(self):
+        return  Mails.objects.filter(from_user=self.request.user.username)
+
 
 
 class SendMessage(LoginRequiredMixin,FormView):
@@ -36,4 +33,6 @@ class SendMessage(LoginRequiredMixin,FormView):
         form.save()
 
         return super().form_valid(form)
+
+
 

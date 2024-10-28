@@ -13,11 +13,12 @@
         <nav>
             <ul>
                 {% if request.user.is_authenticated %}
-                <li><a href="#">Входящие</a></li>
-                <li><a href="#">Отправленные</a></li>
-                <li><a href="#">Черновики</a></li>
-                <li><a href="#">Настройки</a></li>
+                <li><a href="/">Входящие</a></li>
+                <li><a href="outcome">Отправленные</a></li>
+                <li><a href="draft">Черновики</a></li>
                 <li><a href="users/logout">Выход</a></li>
+                {% else %}
+                <li><a href="{% url 'users:register' %}">Регистрация</a></li>
                 {% endif %}
 
             </ul>
