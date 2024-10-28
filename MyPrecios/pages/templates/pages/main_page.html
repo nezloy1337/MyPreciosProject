@@ -11,8 +11,13 @@
             <ul>
                 {% for mail in mails %}
                     <li>
+                        {% if bool %}
+                        <strong>To:</strong> {{ mail.to_user }}<br>
+                         {% else %}
                         <strong>From:</strong> {{ mail.from_user }}<br>
+                        {% endif %}
                         <strong>Message:</strong> {{ mail.message }}
+
                     </li>
                 {% endfor %}
 

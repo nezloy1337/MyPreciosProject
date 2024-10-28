@@ -18,10 +18,11 @@ class MainPage(LoginRequiredMixin, ListView):
         return Mails.objects.filter(to_user=self.request.user.username)
 
 class OutcomeMessages(MainPage):
+    extra_context = {'bool':True}
     def get_queryset(self):
         return  Mails.objects.filter(from_user=self.request.user.username)
 
-class ShowMessage(DetailView):
+class ShowMessage(LoginRequiredMixin,DetailView):
     model = Mails
     template_name = 'pages/show_message.html'
     slug_url_kwarg = 'message_id'
