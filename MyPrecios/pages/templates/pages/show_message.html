@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block messages %}
+<main>
+        <section>
+            <p> Сообщение от {{ message.from_user}}</p>
+           {{message.message|linebreaks}}
+        </section>
+    </main>
+{% endblock messages %}

@@ -1,3 +1,5 @@
+from mailbox import Message
+
 from django.contrib.auth import get_user_model, logout
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.models import User
