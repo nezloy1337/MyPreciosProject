@@ -1,0 +1,21 @@
+
+
+services:
+
+  project:
+    build: .
+    ports:
+      - "8000:8000"
+
+  db:
+    image: postgres
+    restart: always
+    shm_size: 128mb
+    environment:
+      POSTGRES_PASSWORD: 1234
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8000"
