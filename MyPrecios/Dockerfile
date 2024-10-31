@@ -1,9 +1,9 @@
 FROM python:3.13
-WORKDIR Pet
-COPY . Pet
+WORKDIR usr/src/app
+COPY requirements.txt ./
 EXPOSE 8000
-RUN pip install -r Pet/requirements.txt
-CMD ["python", "manage.py", "runserver"]
+RUN pip install -r requirements.txt
+
 
 
 

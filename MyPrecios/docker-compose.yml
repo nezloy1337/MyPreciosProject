@@ -1,21 +1,33 @@
 
-
 services:
-
-  project:
+  django:
     build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    container_name: django
+    volumes:
+      - .:/usr/src/app
     ports:
       - "8000:8000"
+    depends_on:
+      - pgdb
 
-  db:
+  pgdb:
     image: postgres
-    restart: always
-    shm_size: 128mb
-    environment:
-      POSTGRES_PASSWORD: 1234
+    container_name: postgresdb
 
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - "8080:8000"
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+      - POSTGRES_PASSWORD:1111
+      - POSTGRES_DB = postgres
+      - POSTGRES_USER = postgres
+    volumes:
+      - pgdbdata:/var/lib/postgresql/data/
+volumes:
+  pgdbdata: null
+
+
+
+
+
+
+

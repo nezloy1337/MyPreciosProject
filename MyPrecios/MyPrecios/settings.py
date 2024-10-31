@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-vkztfs^sykl_o)lmmi)8er(lkfv-qk!lm_-($(&s(auy+3%$&5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','localhost','0.0.0,0']
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'pages.apps.PagesConfig',
     'django_extensions',
     'users.apps.UsersConfig',
+    'django.contrib.postgres'
 ]
 
 MIDDLEWARE = [
@@ -81,10 +82,10 @@ WSGI_APPLICATION = 'MyPrecios.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mailservice',
-        'USER': 'nezloy',
+        'NAME': 'postgres',
+        'USER': 'postgres',
         'PASSWORD': '1111',
-        'HOST': 'localhost',
+        'HOST': 'pgdb',
         'PORT': '5432',
     }
 }
