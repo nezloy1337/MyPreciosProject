@@ -16,7 +16,7 @@
                          {% else %}
                         <strong>From:</strong> {{ mail.from_user }}<br>
                         {% endif %}
-                        <strong>Message:</strong> {{ mail.message }}
+                        <strong>Message:</strong> {{ mail.message|truncatechars:25 }}
 
                     </li>
                 {% endfor %}
