@@ -7,6 +7,7 @@ urlpatterns = [
    path('message/<int:message_id>', views.ShowMessage.as_view(),name='messsage'),
    path('draft', views.ShowDraft.as_view(),name='drafts'),
    path('createdraft', views.CreateDraft.as_view(),name='createdraft'),
+   path('editdraft/<int:pk>', views.EditDraft.as_view(),name='editdraft'),
 
 
 ]

@@ -7,7 +7,7 @@ from pages.models import Mails
 class SendMessageForm(forms.ModelForm):
     class Meta:
         model = Mails
-        fields = [ 'to_user', 'message']
+        fields = [ 'to_user', 'message' ]
         widgets = {
             'to_user': forms.TextInput(attrs={'class': 'form-input'}),
             'content': forms.Textarea(attrs={'cols': 50, 'rows': 5}),

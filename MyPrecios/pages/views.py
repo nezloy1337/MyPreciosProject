@@ -20,15 +20,6 @@ class OutcomeMessages(MainPage):
     def get_queryset(self):
         return  Mails.objects.filter(Q(from_user=self.request.user.username) & Q(is_draft=False))
 
-class ShowMessage(LoginRequiredMixin,DetailView):
-    model = Mails
-    template_name = 'pages/show_message.html'
-    slug_url_kwarg = 'message_id'
-    context_object_name = 'message'
-
-    def get_object(self):
-        return get_object_or_404(Mails,id=self.kwargs['message_id'])
-
 class SendMessage(LoginRequiredMixin,FormView):
     form_class = SendMessageForm
     template_name = 'pages/sendform.html'
@@ -38,6 +29,11 @@ class SendMessage(LoginRequiredMixin,FormView):
         form.instance.from_user = self.request.user.username
         form.save()
         return super().form_valid(form)
+
+class ShowDraft(MainPage):
+    template_name = 'pages/drafts.html'
+    def get_queryset(self):
+        return Mails.objects.filter(Q(from_user=self.request.user.username) & Q(is_draft=True))
 
 class CreateDraft(LoginRequiredMixin,FormView):
     form_class = CreateDraftForm
@@ -50,11 +46,23 @@ class CreateDraft(LoginRequiredMixin,FormView):
         form.save()
         return super().form_valid(form)
 
+class EditDraft(LoginRequiredMixin,UpdateView):
+    model = Mails
+    template_name = 'pages/drafts_form.html'
+    fields = ['to_user', 'message' , 'is_draft']
+    success_url = reverse_lazy("drafts")
 
-class ShowDraft(MainPage):
-    template_name = 'pages/drafts.html'
-    def get_queryset(self):
-        return Mails.objects.filter(Q(from_user=self.request.user.username) & Q(is_draft=True))
 
+
+
+
+class ShowMessage(LoginRequiredMixin,DetailView):
+    model = Mails
+    template_name = 'pages/show_message.html'
+    slug_url_kwarg = 'message_id'
+    context_object_name = 'message'
+
+    def get_object(self):
+        return get_object_or_404(Mails,id=self.kwargs['message_id'])
 
 

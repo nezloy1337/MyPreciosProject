@@ -13,6 +13,8 @@
                     <li>
                         <strong>To:</strong> {{ mail.to_user }}<br>
                         <strong>Message:</strong> {{ mail.message }}
+                       <p><button onclick="location.href='editdraft/{{ mail.id }}';">Перейти в черновик</button></p>
+<!--                        <li><a href="{% url 'editdraft' mail.id  %}">редактировать</a></li>-->
 
                     </li>
                 {% endfor %}
