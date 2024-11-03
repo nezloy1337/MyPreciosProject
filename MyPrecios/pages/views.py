@@ -41,13 +41,9 @@ class SendMessage(LoginRequiredMixin,FormView):
         return super().form_valid(form)
 
 
-class ShowDraft(LoginRequiredMixin, DetailView):
-    model = Mails
-    template_name = 'pages/show_message.html'
-    slug_url_kwarg = 'message_id'
-    context_object_name = 'message'
+class ShowDraft(MainPage):
+    def get_queryset(self):
+        return Mails.objects.filter(Q(from_user=self.request.user.username) & Q(is_draft=True))
 
-    def get_object(self):
-        return get_object_or_404(Mails, id=self.kwargs['message_id'])
 
 
