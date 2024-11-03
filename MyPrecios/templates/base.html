@@ -15,7 +15,7 @@
                 {% if request.user.is_authenticated %}
                 <li><a href="/">Входящие</a></li>
                 <li><a href="{% url 'outcome' %}">Отправленные</a></li>
-                <li><a href="">Черновики</a></li>
+                <li><a href="{% url 'drafts' %}">Черновики</a></li>
                 <li><a href="{% url 'users:logout' %}">Выход</a></li>
                 {% else %}
                 <li><a href="{% url 'users:register' %}">Регистрация</a></li>

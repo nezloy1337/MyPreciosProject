@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block messages %}
+<main>
+        <section>
+            <form action="{% url 'createdraft' %}" method="GET">
+    <button type="submit">Написать черновик</button>
+</form>
+        </section>
+        <section>
+            <h3>Последние черновики</h3>
+            <ul>
+                {% for mail in mails %}
+                    <li>
+                        <strong>To:</strong> {{ mail.to_user }}<br>
+                        <strong>Message:</strong> {{ mail.message|truncatechars:25 }}
+                       <p><button onclick="location.href='editdraft/{{ mail.id }}';">Перейти в черновик</button></p>
+<!--                        <li><a href="{% url 'editdraft' mail.id  %}">редактировать</a></li>-->
+
+                    </li>
+                {% endfor %}
+
+
+            </ul>
+        </section>
+    </main>
+{% endblock messages %}
