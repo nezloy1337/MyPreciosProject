@@ -10,7 +10,7 @@ from django.template.defaultfilters import title
 from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView
 
-from users.forms import LoginUserForm, SendMessageForm, CreateUserForm
+from users.forms import LoginUserForm,  CreateUserForm
 
 
 class LoginUser(LoginView):

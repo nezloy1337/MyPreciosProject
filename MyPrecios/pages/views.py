@@ -5,8 +5,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView, TemplateView, ListView, FormView, DetailView
 from django.db.models import Q
 from pages.models import Mails
-from users.forms import SendMessageForm
-
+from .forms import SendMessageForm, CreateDraftForm
 
 
 class MainPage(LoginRequiredMixin, ListView):
@@ -40,8 +39,20 @@ class SendMessage(LoginRequiredMixin,FormView):
         form.save()
         return super().form_valid(form)
 
+class CreateDraft(LoginRequiredMixin,FormView):
+    form_class = CreateDraftForm
+    template_name = 'pages/drafts_form.html'
+    success_url = reverse_lazy("drafts")
+
+    def form_valid(self, form):
+        form.instance.from_user = self.request.user.username
+        form.instance.is_draft= True
+        form.save()
+        return super().form_valid(form)
+
 
 class ShowDraft(MainPage):
+    template_name = 'pages/drafts.html'
     def get_queryset(self):
         return Mails.objects.filter(Q(from_user=self.request.user.username) & Q(is_draft=True))
 
