@@ -6,3 +6,4 @@ class Mails(models.Model):
     to_user = models.CharField(max_length=50,blank=True)
     message = models.TextField(blank=True,)
     sent_at = models.DateTimeField(auto_now=True)
+    is_draft = models.BooleanField(default=False)
