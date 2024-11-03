@@ -17,6 +17,7 @@
                         <strong>From:</strong> {{ mail.from_user }}<br>
                         {% endif %}
                         <strong>Message:</strong> {{ mail.message|truncatechars:25 }}
+                         <p><button onclick="location.href='message/{{ mail.id }}';">Перейти к сообщению</button></p>
 
                     </li>
                 {% endfor %}
