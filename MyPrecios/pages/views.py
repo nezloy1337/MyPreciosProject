@@ -7,6 +7,16 @@ from django.db.models import Q
 from pages.models import Mails
 from .forms import SendMessageForm, CreateDraftForm
 
+from rest_framework import generics
+
+from .serializers import MainPageSerializer
+
+
+class MainPageApiView(generics.ListAPIView):
+
+    queryset = Mails.objects.all()
+    serializer_class = MainPageSerializer
+
 
 class MainPage(LoginRequiredMixin, ListView):
     model = Mails

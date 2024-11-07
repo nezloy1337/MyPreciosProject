@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'pages.apps.PagesConfig',
     'django_extensions',
     'users.apps.UsersConfig',
-    "debug_toolbar"
+    "debug_toolbar",
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

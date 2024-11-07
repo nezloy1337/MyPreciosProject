@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.utils.deconstruct import deconstructible
+from django.core.cache import cache
 
 from pages.models import Mails
 
@@ -29,10 +30,14 @@ class SendMessageForm(forms.ModelForm):
 
     def clean_to_user(self):
         to_user = self.cleaned_data['to_user']
-        users = User.objects.all().values_list('username', flat=True)
+        users =  User.objects.all().values_list('username', flat=True)
         if to_user not in users:
             raise ValidationError('there is no user with that username')
         return to_user
+    # python manage.py shell_plus
+    # from django.core.cache import cache
+    # cache.set('users', User.objects.all().values_list('username', flat=True), 500)
+
 
 class CreateDraftForm(SendMessageForm):
     pass
