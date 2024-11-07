@@ -1,9 +1,13 @@
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.forms import model_to_dict
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView, TemplateView, ListView, FormView, DetailView
 from django.db.models import Q
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
 from pages.models import Mails
 from .forms import SendMessageForm, CreateDraftForm
 
@@ -12,10 +16,18 @@ from rest_framework import generics
 from .serializers import MainPageSerializer
 
 
-class MainPageApiView(generics.ListAPIView):
+class MainPageApiView(APIView):
+    def get(self, request):
+        lst = Mails.objects.all().values()
+        return Response({'posts': list(lst)})
 
-    queryset = Mails.objects.all()
-    serializer_class = MainPageSerializer
+    def post(self, request, *args, **kwargs):
+        post_new = Mails.objects.create(
+            from_user = request.data['from_user'],
+            to_user = request.data['to_user'],
+            message = request.data['message'],
+        )
+        return Response({'post': model_to_dict(post_new)})
 
 
 class MainPage(LoginRequiredMixin, ListView):
