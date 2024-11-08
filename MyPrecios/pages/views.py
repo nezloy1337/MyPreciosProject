@@ -18,16 +18,43 @@ from .serializers import MainPageSerializer
 
 class MainPageApiView(APIView):
     def get(self, request):
-        lst = Mails.objects.all().values()
-        return Response({'posts': list(lst)})
+        lst = Mails.objects.all()
+        return Response({'posts': MainPageSerializer(lst, many=True).data})
 
-    def post(self, request, *args, **kwargs):
-        post_new = Mails.objects.create(
-            from_user = request.data['from_user'],
-            to_user = request.data['to_user'],
-            message = request.data['message'],
-        )
-        return Response({'post': model_to_dict(post_new)})
+    def post(self, request):
+        serializer = MainPageSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({'post': serializer.data})
+
+    def put(self, request , *args, **kwargs):
+        pk = kwargs.get('pk',None)
+        if not pk:
+            return Response({'error': 'Pk must be provided'})
+        try:
+            instance = Mails.objects.get(pk=pk)
+        except:
+            return Response({'error': 'Mail does not exist'})
+        serializer = MainPageSerializer(data=request.data,instance=instance)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({'post': serializer.data})
+
+    def delete(self, request, *args, **kwargs):
+        pk = kwargs.get('pk', None)
+        if not pk:
+            return Response({'error': 'Pk must be provided'})
+        try:
+            instance = Mails.objects.get(pk=pk)
+        except:
+            return Response({'error': 'Mail does not exist'})
+
+        serializer = MainPageSerializer(instance=instance)
+        serializer.delete(instance)
+        return Response({'post': f"deleted post { pk }"})
+
+
+
 
 
 class MainPage(LoginRequiredMixin, ListView):
