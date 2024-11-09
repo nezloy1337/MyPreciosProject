@@ -8,6 +8,7 @@ from django.views.generic import CreateView, UpdateView, DeleteView, TemplateVie
 from django.db.models import Q
 from rest_framework.decorators import action
 from rest_framework.generics import ListCreateAPIView, UpdateAPIView, RetrieveAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet
@@ -24,6 +25,7 @@ class MailsViewSet(mixins.CreateModelMixin,
                    mixins.ListModelMixin,
                    GenericViewSet):
     serializer_class = MailsSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly, )
 
 
     def get_queryset(self):
