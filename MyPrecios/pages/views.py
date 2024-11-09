@@ -54,8 +54,6 @@ class EditDraft(LoginRequiredMixin,UpdateView):
 
 
 
-
-
 class ShowMessage(LoginRequiredMixin,DetailView):
     model = Mails
     template_name = 'pages/show_message.html'
