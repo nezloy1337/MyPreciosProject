@@ -11,7 +11,6 @@ class TestViews(TestCase):
         self.url_detail = reverse('messsage', args=[27])
         User.objects.create_user(username='root', password='1234')
         User.objects.create_user(username='new', password='12')
-
         Mails.objects.create(pk=27,from_user='root', to_user='new',message='fdsafa')
 
 
@@ -46,10 +45,3 @@ class TestViews(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(Mails.objects.filter(message='testig').count(), 0)
 
-
-
-    def test_income(self):
-        pass
-
-    def test_outcone(self):
-        pass
