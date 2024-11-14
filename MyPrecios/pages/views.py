@@ -8,7 +8,7 @@ from pages.models import Mails
 from .forms import SendMessageForm, CreateDraftForm
 
 
-class MainPage(LoginRequiredMixin, ListView):
+class MainPage( ListView):
     model = Mails
     template_name = 'pages/main_page.html'
     context_object_name = 'mails'
@@ -25,6 +25,7 @@ class SendMessage(LoginRequiredMixin,FormView):
     template_name = 'pages/sendform.html'
     success_url = reverse_lazy("home")
 
+#вызывается после метода is_valid
     def form_valid(self, form):
         form.instance.from_user = self.request.user.username
         form.save()
@@ -42,7 +43,7 @@ class CreateDraft(LoginRequiredMixin,FormView):
 
     def form_valid(self, form):
         form.instance.from_user = self.request.user.username
-        form.instance.is_draft= True
+        form.instance.is_draft = True
         form.save()
         return super().form_valid(form)
 
@@ -51,10 +52,6 @@ class EditDraft(LoginRequiredMixin,UpdateView):
     template_name = 'pages/drafts_form.html'
     fields = ['to_user', 'message' , 'is_draft']
     success_url = reverse_lazy("drafts")
-
-
-
-
 
 class ShowMessage(LoginRequiredMixin,DetailView):
     model = Mails

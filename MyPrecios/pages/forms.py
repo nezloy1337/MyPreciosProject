@@ -26,7 +26,7 @@ class SendMessageForm(forms.ModelForm):
             'to_user': forms.TextInput(attrs={'class': 'form-input'}),
             'content': forms.Textarea(attrs={'cols': 50, 'rows': 5}),
         }
-
+#доп валидации поверх is_valid
     def clean_to_user(self):
         to_user = self.cleaned_data['to_user']
         users = User.objects.all().values_list('username', flat=True)
