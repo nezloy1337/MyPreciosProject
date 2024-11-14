@@ -8,7 +8,7 @@ from pages.models import Mails
 from .forms import SendMessageForm, CreateDraftForm
 
 
-class MainPage( ListView):
+class MainPage(LoginRequiredMixin, ListView):
     model = Mails
     template_name = 'pages/main_page.html'
     context_object_name = 'mails'

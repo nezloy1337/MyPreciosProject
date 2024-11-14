@@ -31,7 +31,7 @@ class SendMessageForm(forms.ModelForm):
         to_user = self.cleaned_data['to_user']
         users = User.objects.all().values_list('username', flat=True)
         if to_user not in users:
-            raise ValidationError('there is no user with that username')
+            raise ValidationError('there is no user with this username')
         return to_user
 
 class CreateDraftForm(SendMessageForm):
